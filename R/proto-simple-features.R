@@ -1,12 +1,12 @@
 
-
-sfc_funs <- list(
-  missing = n_missing,
-  complete = n_complete,
-  n = length,
-  n_unique = purrr::compose(length, n_unique),
-  valid = purrr::compose(sum, sf::st_is_valid)
-)
+# 
+# sfc_funs <- list(
+#   missing = n_missing,
+#   complete = n_complete,
+#   n = length,
+#   n_unique = purrr::compose(length, n_unique),
+#   valid = purrr::compose(sum, sf::st_is_valid)
+# )
 
 
 
@@ -78,20 +78,12 @@ sfc_funs <- list(
 # 
 # library(skimr)
 # library(sf)
-# sfp <- st_read(system.file("shape/nc.shp", package="sf"))
-# sfc_funs <- list(
-#   missing = n_missing,
-#   complete = n_complete,
-#   n = length,
-#   n_unique = purrr::compose(length, n_unique),
-#   valid = purrr::compose(sum, sf::st_is_valid)
-# )
+# sfp <- st_read(system.file("shape/nc.shp", package="sf"), quiet = TRUE)
 # skim_with(sfc = sfc_funs , append = TRUE)
 # 
-# skim_v(st_geometry(sfp))
-# 
-# skim(minimal_mesh)
-# 
+# skim_v(st_geometry(sfp[1:10, 1:4]))
+# skim(sfp[1:10, 1:4])
+
 
 
 
