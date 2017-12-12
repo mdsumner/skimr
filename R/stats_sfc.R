@@ -17,8 +17,20 @@ ncoords_sf <- function(x) {
 #' @name ncoords_sf
 #' @export
 npaths_sf <- function(x) {
-  gibble::gibble(x) %>% dplyr::tally() %>% dplyr::pull(n)
+  nrow(gibble::gibble(x))
 }
+#' @name nsegments_sf
+#' @export
+nsegment_sf <- function(x) {
+  nrow(silicate::sc_segment(silicate::PATH(x)))
+}
+#' @name nvertex_sf
+#' @export
+nvertex_sf <- function(x) {
+  nrow(dplyr::distinct(silicate::sc_coord(x)))
+}
+
+
 sfc_point_funs<-list(
   missing = n_missing,
   complete = n_complete,
@@ -26,6 +38,7 @@ sfc_point_funs<-list(
   n_unique = purrr::compose(length, n_unique),
   valid = purrr::compose(sum, sf::st_is_valid),
   ncoords = ncoords_sf, 
+  nvertex = nvertex_sf,
   npaths = npaths_sf
 )
 
@@ -36,8 +49,9 @@ sfc_linestring_funs<-list(
   n_unique = purrr::compose(length, n_unique),
   valid = purrr::compose(sum, sf::st_is_valid),
   ncoords = ncoords_sf, 
-  npaths = npaths_sf
-  
+  nvertex = nvertex_sf,
+  npaths = npaths_sf,
+  nsegments = nsegment_sf
 )
 
 sfc_polygon_funs<-list(
@@ -47,7 +61,9 @@ sfc_polygon_funs<-list(
   n_unique = purrr::compose(length, n_unique),
   valid = purrr::compose(sum, sf::st_is_valid),
   ncoords = ncoords_sf, 
-  npaths = npaths_sf
+  nvertex = nvertex_sf,
+  npaths = npaths_sf,
+  nsegments = nsegment_sf
   
 )
 
@@ -57,7 +73,8 @@ sfc_multipoint_funs<-list(
   n = length,
   n_unique = purrr::compose(length, n_unique),
   valid = purrr::compose(sum, sf::st_is_valid),
-  ncoords = ncoords_sf, 
+  ncoords = ncoords_sf,
+  nvertex = nvertex_sf,
   npaths = npaths_sf
   
 )
@@ -68,9 +85,10 @@ sfc_multilinestring_funs<-list(
   n = length,
   n_unique = purrr::compose(length, n_unique),
   valid = purrr::compose(sum, sf::st_is_valid),
-  ncoords = ncoords_sf, 
-  npaths = npaths_sf
-  
+  ncoords = ncoords_sf,
+  nvertex = nvertex_sf,
+  npaths = npaths_sf,
+  nsegments = nsegment_sf
 )
 
 sfc_multipolygon_funs<-list(
@@ -80,7 +98,9 @@ sfc_multipolygon_funs<-list(
   n_unique = purrr::compose(length, n_unique),
   valid = purrr::compose(sum, sf::st_is_valid),
   ncoords = ncoords_sf, 
-  npaths = npaths_sf
+  nvertex = nvertex_sf,
+  npaths = npaths_sf,
+  nsegments = nsegment_sf
   
 )
 
@@ -91,8 +111,9 @@ sfc_geometry_funs<-list(
   n_unique = purrr::compose(length, n_unique),
   valid = purrr::compose(sum, sf::st_is_valid),
   ncoords = ncoords_sf, 
-  npaths = npaths_sf
-  
+  nvertex = nvertex_sf,
+  npaths = npaths_sf,
+  nsegments = nsegment_sf
 )
 
 

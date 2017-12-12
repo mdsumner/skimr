@@ -46,3 +46,4 @@ Collate:
     'skim.R'
     'skim_print.R'
     'skim_v.R'
+    'stats_sfc.R'
