@@ -15,16 +15,18 @@ Depends:
     R (>= 3.1.2)
 Imports:
     dplyr (>= 0.7),
+    gibble,
     magrittr,
     pillar,
     purrr,
     rlang,
+    silicate,
     stats,
     stringr,
     tibble (>= 0.6),
     tidyr (>= 0.7)
 Remotes:
-    hadley/pillar
+    hadley/pillar, hypertidy/silicate
 Suggests:
     knitr,
     rmarkdown,
